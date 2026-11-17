@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import EncabezadoComunidad, { PanelDato } from '../EncabezadoComunidad'
 import pastaImage from '../../assets/images/favoritos-pasta.jpg'
 import bowlImage from '../../assets/images/favoritos-bowl.jpg'
 import sandwichImage from '../../assets/images/favoritos-sandwich.jpg'
@@ -165,35 +166,19 @@ function Favoritos() {
 
   return (
     <section className="space-y-9">
-      <header className="relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-emerald-950 via-emerald-900 to-green-800 px-6 py-8 text-white shadow-xl sm:px-9 sm:py-10">
-        <div className="absolute -right-12 -top-16 -z-10 h-64 w-64 rounded-full bg-emerald-400/10 blur-2xl" aria-hidden="true" />
-        <div className="absolute -bottom-28 right-1/4 -z-10 h-56 w-56 rounded-full bg-lime-300/10 blur-2xl" aria-hidden="true" />
-        <div className="flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-emerald-100">
-              <i className="bi bi-heart-fill text-rose-300" aria-hidden="true"></i>
-              Sa·zón · Comunidad
-            </span>
-            <h1 className="m-0 mt-4 font-poppins text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Tus recetas favoritas
-            </h1>
-            <p className="m-0 mt-3 max-w-xl text-sm leading-relaxed text-emerald-50 sm:text-base">
-              Guarda las recetas que te encantan y vuelve a ellas cuando quieras cocinar algo especial.
-            </p>
-          </div>
-          <div className="flex w-fit items-center gap-4 rounded-2xl border border-white/15 bg-white/10 px-5 py-3 backdrop-blur-sm">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-2xl font-bold text-emerald-900">
-              {favoritas.length}
-            </span>
-            <span>
-              <span className="block text-lg font-bold text-white">
-                {favoritas.length === 1 ? 'receta guardada' : 'recetas guardadas'}
-              </span>
-              <span className="block text-xs text-emerald-100">en tu colección</span>
-            </span>
-          </div>
-        </div>
-      </header>
+      <EncabezadoComunidad
+        icono="bi-heart-fill"
+        colorIcono="text-rose-300"
+        titulo="Tus recetas favoritas"
+        descripcion="Guarda las recetas que te encantan y vuelve a ellas cuando quieras cocinar algo especial."
+        aside={
+          <PanelDato
+            valor={favoritas.length}
+            titulo={favoritas.length === 1 ? 'receta guardada' : 'recetas guardadas'}
+            detalle="en tu colección"
+          />
+        }
+      />
 
       <section aria-labelledby="favoritas-heading" className="space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-3">

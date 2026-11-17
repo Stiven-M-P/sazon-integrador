@@ -4,6 +4,7 @@ import FiltrosReportes from './FiltrosReportes'
 import TablaReportes from './TablaReportes'
 import DetalleReporteModal from './DetalleReporteModal'
 import { REPORTES_INICIALES } from './data'
+import EncabezadoComunidad, { PanelDato } from '../EncabezadoComunidad'
 
 const FILTROS = [
   { id: 'todos', label: 'Todos' },
@@ -105,31 +106,14 @@ function ReporteValoracion() {
 
   return (
     <section className="space-y-6">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="space-y-2">
-          <p className="m-0 flex flex-wrap items-center gap-2 text-[10px] font-mono-tag uppercase tracking-wider text-sazon-texto2 dark:text-slate-400">
-            <span className="rounded-full bg-sazon-verdeHoja/10 px-2.5 py-1 font-bold text-sazon-verdeHondo dark:text-sazon-verdeNeon">
-              <i className="bi bi-shield-check mr-1.5"></i>
-              HU-CEL06-01 · Moderación y confianza
-            </span>
-            <span>v2.4 Nutresa Core</span>
-          </p>
-          <h1 className="m-0 font-poppins text-2xl font-extrabold tracking-tight text-[#322014] dark:text-white sm:text-3xl">
-            Panel Administrativo de Moderación de Reportes
-          </h1>
-          <p className="m-0 max-w-3xl text-sm leading-6 text-sazon-texto2 dark:text-slate-300">
-            Supervisión, filtrado y resolución en tiempo real de interacciones comunitarias.
-            Protección de recetas co-creadas con marcas Zenú, Doria, Pietrán, Noel, Chocolisto y Sello Rojo.
-          </p>
-        </div>
-        <div className="shrink-0 rounded-xl border border-slate-200 bg-white/70 px-3 py-2 text-[10px] font-mono-tag text-slate-500 shadow-sm dark:border-white/10 dark:bg-sazon-verdeNutresaCard dark:text-slate-300">
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
-            <span>branch: <strong className="text-sazon-verdeHoja dark:text-sazon-verdeNeon">feature/comunidad/HU-01</strong></span>
-          </div>
-          <p className="m-0 mt-1 text-right">tabla: reporte_moderacion (SLA &lt; 20 min)</p>
-        </div>
-      </header>
+      <EncabezadoComunidad
+        icono="bi-shield-check"
+        colorIcono="text-emerald-300"
+        etiqueta="Moderación y confianza"
+        titulo="Panel de moderación de reportes"
+        descripcion="Supervisión, filtrado y resolución en tiempo real de interacciones comunitarias. Protección de recetas co-creadas con marcas Zenú, Doria, Pietrán, Noel, Chocolisto y Sello Rojo."
+        aside={<PanelDato valor={conteos.pendiente} titulo="pendientes" detalle="SLA menor a 20 min" />}
+      />
 
       <EstadisticasModeracion
         pendientes={conteos.pendiente}
