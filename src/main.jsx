@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import Header from './components/Header'
 import Comunidad from './comunidad/valoracion/Comunidad'
+import ReporteValoracion from './comunidad/reporteValoracion/ReporteValoracion'
 import { Favoritos } from './comunidad/favoritos'
 
 export function App() {
@@ -35,8 +36,26 @@ export function App() {
         >
           Favoritos
         </button>
+        <button
+          type="button"
+          aria-pressed={vista === 'reportes'}
+          className={`rounded-xl px-4 py-2 text-sm font-bold transition-colors ${
+            vista === 'reportes'
+              ? 'bg-emerald-800 text-white shadow-sm dark:bg-emerald-400 dark:text-emerald-950'
+              : 'border border-slate-200 bg-white text-slate-700 hover:border-emerald-700 hover:text-emerald-800 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200'
+          }`}
+          onClick={() => setVista('reportes')}
+        >
+          Reportes
+        </button>
       </nav>
-      {vista === 'favoritos' ? <Favoritos /> : <Comunidad />}
+      {vista === 'favoritos' ? (
+        <Favoritos />
+      ) : vista === 'reportes' ? (
+        <ReporteValoracion />
+      ) : (
+        <Comunidad />
+      )}
     </Header>
   )
 }
