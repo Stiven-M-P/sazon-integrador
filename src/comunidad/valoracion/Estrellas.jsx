@@ -4,7 +4,14 @@ import { useState } from 'react'
  * Muestra una calificación con estrellas (soporta medias estrellas).
  * Si recibe `onChange` se vuelve interactiva (hover + clic + teclado).
  */
-function Estrellas({ valor = 0, max = 5, tamano = 'text-base', onChange, className = '' }) {
+function Estrellas({
+  valor = 0,
+  max = 5,
+  tamano = 'text-base',
+  color = 'text-sazon-verdeNoche dark:text-sazon-verdeNeon',
+  onChange,
+  className = '',
+}) {
   const [hover, setHover] = useState(0)
   const interactiva = typeof onChange === 'function'
   const mostrado = interactiva && hover ? hover : valor
@@ -18,7 +25,7 @@ function Estrellas({ valor = 0, max = 5, tamano = 'text-base', onChange, classNa
   if (!interactiva) {
     return (
       <span
-        className={`inline-flex items-center gap-0.5 text-sazon-verdeNoche dark:text-sazon-verdeNeon ${tamano} ${className}`}
+        className={`inline-flex items-center gap-0.5 ${color} ${tamano} ${className}`}
         aria-label={`${valor} de ${max} estrellas`}
         role="img"
       >

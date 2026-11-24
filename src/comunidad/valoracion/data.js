@@ -1,13 +1,16 @@
 // Datos de ejemplo para el módulo Comunidad (Célula 6).
 // Reemplazar por la respuesta del backend cuando esté disponible.
 
+// Misma foto de la pasta que usa Favoritos (receta Zenú + Doria)
+import fotoPasta from '../../assets/images/favoritos-pasta.jpg'
+
 export const RECETA_DESTACADA = {
   id: 'RC-2849',
   titulo: 'Pasta Penne Doria con Rodajas Ranchera Zenú',
   descripcion:
     'Sazón hogareño con el toque artesanal de hierbas de huerta, tomates asados y reducción suave en mantequilla.',
   etiquetaImagen: 'Zenú + Doria',
-  imagen: null,
+  imagen: fotoPasta,
   tiempo: '25 min',
   porciones: 4,
   ahorro: '45% despensa',
@@ -52,7 +55,7 @@ export const RESENAS = [
     criterioDestacado: 'Sabor 5/5',
     texto:
       'Excelente combinación. Recomiendo dorar bien las rodajas de Ranchera en sartén de hierro antes de mezclar con la pasta Doria al dente para sellar los jugos ahumados.',
-    imagen: null,
+    imagen: fotoPasta,
     conFoto: true,
     truco: null,
     meGusta: 28,
@@ -73,7 +76,7 @@ export const RESENAS = [
     criterioDestacado: 'Facilidad 5/5',
     texto:
       'Súper rápida para la cena de los niños. Solo necesité 1 paquete de penne y 1 de ranchera. Recomiendo agregar unas cucharadas de crema de leche o queso blanco costeño rallado encima.',
-    imagen: null,
+    imagen: fotoPasta,
     truco: 'Usé 200ml de agua de cocción de la pasta para suavizar la salsa.',
     meGusta: 15,
     leGusta: false,
@@ -93,7 +96,7 @@ export const RESENAS = [
     criterioDestacado: 'Ahorro 5/5',
     texto:
       'El balance graso de la Ranchera Zenú liga perfecto con la textura estriada de Doria Penne. Para un maridaje completo en casa, el aroma de una taza de Café Sello Rojo luego del almuerzo cierra la experiencia redonda.',
-    imagen: null,
+    imagen: fotoPasta,
     conFoto: true,
     truco: null,
     meGusta: 42,

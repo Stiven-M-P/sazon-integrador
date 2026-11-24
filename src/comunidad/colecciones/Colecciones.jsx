@@ -1,4 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
+import EncabezadoComunidad, { PanelDato } from '../EncabezadoComunidad'
+import fotoPasta from '../../assets/images/favoritos-pasta.jpg'
+import fotoSandwich from '../../assets/images/favoritos-sandwich.jpg'
+import fotoPostre from '../../assets/images/favoritos-postre.jpg'
 
 const COLECCIONES_INICIALES = [
   {
@@ -8,6 +12,7 @@ const COLECCIONES_INICIALES = [
     privacidad: 'Privada',
     actualizada: 'Actualizada hoy',
     color: 'from-emerald-800 via-green-700 to-lime-600',
+    imagen: fotoPasta,
     icono: 'bi-lightning-charge-fill',
     recetas: [
       { nombre: 'Penne con salchicha y albahaca', tiempo: '25 min', marca: 'Doria + Zenú' },
@@ -22,6 +27,7 @@ const COLECCIONES_INICIALES = [
     privacidad: 'Pública',
     actualizada: 'Actualizada hace 2 días',
     color: 'from-amber-800 via-orange-700 to-rose-500',
+    imagen: fotoSandwich,
     icono: 'bi-people-fill',
     recetas: [
       { nombre: 'Picada casera para el fin de semana', tiempo: '45 min', marca: 'Zenú + Pietrán' },
@@ -35,6 +41,7 @@ const COLECCIONES_INICIALES = [
     privacidad: 'Privada',
     actualizada: 'Actualizada hace 1 semana',
     color: 'from-fuchsia-900 via-rose-700 to-amber-500',
+    imagen: fotoPostre,
     icono: 'bi-cake2-fill',
     recetas: [
       { nombre: 'Milo frío con galletas', tiempo: '15 min', marca: 'Tosh' },
@@ -61,7 +68,18 @@ function ColeccionCard({ coleccion, onAbrir }) {
 
   return (
     <article className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-emerald-900/60 dark:bg-sazon-verdeNutresaCard">
-      <div className={`relative flex h-44 items-end overflow-hidden bg-gradient-to-br ${coleccion.color} p-5`}>
+      <div className={`group relative flex h-44 items-end overflow-hidden bg-gradient-to-br ${coleccion.color} p-5`}>
+        {coleccion.imagen && (
+          <>
+            <img
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              loading="lazy"
+              src={coleccion.imagen}
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
+          </>
+        )}
         <div aria-hidden="true" className="absolute -right-5 -top-8 h-40 w-40 rounded-full border-[18px] border-white/10" />
         <div aria-hidden="true" className="absolute right-16 -top-10 h-32 w-32 rounded-full border border-white/15" />
         <span className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-xl text-white backdrop-blur-sm">
@@ -221,33 +239,19 @@ function Colecciones() {
 
   return (
     <section className="space-y-6">
-      <header className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-emerald-900/60 dark:bg-sazon-verdeNutresaCard">
-        <div className="grid gap-0 lg:grid-cols-[1fr_auto]">
-          <div className="p-6 sm:p-8">
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 font-mono-tag text-[10px] font-bold uppercase tracking-[0.12em] text-sazon-verdeHondo dark:bg-emerald-950/60 dark:text-sazon-verdeNeon">
-              <i className="bi bi-bookmark-heart-fill" /> Tu recetario personal
-            </span>
-            <h1 className="mb-2 mt-0 font-poppins text-3xl font-extrabold tracking-tight text-sazon-verdeNoche dark:text-white sm:text-4xl">
-              Mis <span className="italic text-sazon-verdeHoja">colecciones</span>
-            </h1>
-            <p className="mb-0 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base">
-              Guarda tus recetas favoritas en un solo lugar y organízalas para cada momento.
-              Crea colecciones privadas o compártelas con la comunidad.
-            </p>
+      <EncabezadoComunidad
+        icono="bi-bookmark-heart-fill"
+        colorIcono="text-lime-300"
+        etiqueta="Tu recetario personal"
+        titulo="Mis colecciones"
+        descripcion="Guarda tus recetas favoritas en un solo lugar y organízalas para cada momento. Crea colecciones privadas o compártelas con la comunidad."
+        aside={
+          <div className="flex flex-col gap-3">
+            <PanelDato valor={colecciones.length} titulo="colecciones" detalle="en tu biblioteca" />
+            <PanelDato valor={totalRecetas} titulo="recetas" detalle="guardadas" />
           </div>
-          <aside className="flex flex-row items-center justify-between gap-5 bg-sazon-verdeNutresa px-6 py-5 text-white lg:w-64 lg:flex-col lg:items-start lg:justify-center lg:px-7">
-            <div>
-              <p className="mb-1 font-mono-tag text-[10px] uppercase tracking-[0.14em] text-emerald-100/80">Tu biblioteca</p>
-              <p className="m-0 font-poppins text-3xl font-bold text-white">{colecciones.length}</p>
-              <p className="m-0 text-xs text-emerald-100/80">colecciones creadas</p>
-            </div>
-            <div className="border-l border-white/20 pl-5 lg:border-l-0 lg:border-t lg:pl-0 lg:pt-4">
-              <p className="m-0 font-poppins text-2xl font-bold text-white">{totalRecetas}</p>
-              <p className="m-0 text-xs text-emerald-100/80">recetas guardadas</p>
-            </div>
-          </aside>
-        </div>
-      </header>
+        }
+      />
 
       <section aria-label="Herramientas de colecciones" className="flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-emerald-900/60 dark:bg-sazon-verdeNutresaCard sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filtrar colecciones">
